@@ -1,0 +1,105 @@
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #b2eaff, #fbe4ff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+.invite-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  background: #ffffffdd;
+  backdrop-filter: blur(8px);
+  padding: 30px;
+  max-width: 420px;
+  width: 90%;
+  border-radius: 24px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  animation: float 4s ease-in-out infinite;
+}
+
+h1 {
+  color: #ff6fae;
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: #7b3fe4;
+  margin-bottom: 10px;
+}
+
+.address {
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.map-btn {
+  display: inline-block;
+  margin-bottom: 15px;
+  color: #4f9cff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  outline: none;
+}
+
+button {
+  margin-top: 15px;
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #ff6fae, #9f7bff);
+  border: none;
+  border-radius: 14px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+.table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.table th {
+  background: linear-gradient(135deg, #ff6fae, #9f7bff);
+  color: white;
+  padding: 10px;
+  border-radius: 6px 6px 0 0;
+}
+
+.table td {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.table tr:nth-child(even) {
+  background: #f9f1ff;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
