@@ -1,5 +1,6 @@
-import { useState } from "react"
+import { useState, useRef } from "react"
 import api from "../services/api"
+import { Link } from "react-router-dom"
 import videoMagali from "../assets/video-magali.mp4"
 import melanciaCentro from "../assets/melancia-centro.gif"
 import numero1 from "../assets/numero-1.png"
@@ -7,6 +8,18 @@ import numero1 from "../assets/numero-1.png"
 export default function App() {
   const [nome, setNome] = useState("")
   const [mostrarPresentes, setMostrarPresentes] = useState(false)
+  const videoRef = useRef(null)
+  const [audioAtivo, setAudioAtivo] = useState(false)
+
+  function ativarSom() {
+    setAudioAtivo(true)
+
+    if (videoRef.current) {
+      videoRef.current.muted = false
+      videoRef.current.volume = 1
+      videoRef.current.play()
+    }
+  }
 
   const endereco =
     "Rua Monsenhor Vicente Martins, 1795 - Henrique Jorge"
@@ -34,15 +47,22 @@ export default function App() {
     <div className="invite-page">
 
       <div className="video-topo">
-        <video
-          src={videoMagali}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-        />
-      </div>
+      <video
+        ref={videoRef}
+        src={videoMagali}
+        autoPlay
+        muted={!audioAtivo}
+        loop
+        playsInline
+        preload="auto"
+      />
+
+      {!audioAtivo && (
+        <button className="btn-som" onClick={ativarSom}>
+          🔊 Ativar som
+        </button>
+      )}
+    </div>
 
       {/* ===== CAPA ===== */}
       <section className="hero">
@@ -57,14 +77,18 @@ export default function App() {
           aninho
         </div>
 
-        <p className="mensagem">
-          Venha se divertir comigo no meu aniversário!
-        </p>
-        <img
-          src="/src/assets/magali-direita.gif"
-          className="magali magali-right"
-          alt="Magali direita"
-        />
+        <div className="mensagem-box">
+          <p className="mensagem">
+            Venha se divertir comigo no meu aniversário!
+          </p>
+
+          {/* ===== MAGALI ===== */}
+          <img
+            src="/src/assets/magali-direita.gif"
+            className="magali-texto"
+            alt="Magali"
+          />
+        </div>
       </section>
 
       {/* ===== DATA / HORÁRIO ===== */}
@@ -95,52 +119,28 @@ export default function App() {
           <span className="acao-texto">Local da festa</span>
         </a>
 
-        <a href="/presentes" className="acao acao-presentes">
-          <span className="material-symbols-outlined icon">
+        <Link to="/presentes" className="acao acao-presentes">
+          <span className="material-symbols-outlined">
             featured_seasonal_and_gifts
           </span>
           <span className="acao-texto">Lista de presentes</span>
-        </a>
+        </Link>
 
-        <a href="#confirmar" className="acao">
+        <button
+          type="button"
+          className="acao"
+          onClick={() => {
+            document
+              .getElementById("confirmar")
+              ?.scrollIntoView({ behavior: "smooth" })
+          }}
+        >
           <span className="material-symbols-outlined">
             person_check
           </span>
           <span className="acao-texto">Confirmar presença</span>
-        </a>
-      </section>
-
-      {/* ===== CONFIRMAR PRESENÇA ===== */}
-      <section id="confirmar" className="confirmar-box">
-        <input
-          placeholder="Digite seu nome"
-          value={nome}
-          onChange={(e) => setNome(e.target.value)}
-        />
-
-        <button onClick={confirmar}>
-          Confirmar Presença 🍉
         </button>
       </section>
-
-      {/* ===== LISTA DE PRESENTES ===== */}
-      {mostrarPresentes && (
-        <section className="presentes">
-          <h2>Sugestões de Presentes 🎁</h2>
-
-          <div className="presente">
-            🎀 Meu pezinho é tamanho 18
-          </div>
-
-          <div className="presente">
-            👕 Visto de 1 a 2 anos
-          </div>
-
-          <div className="presente">
-            🧸 Gosto de brinquedos animados
-          </div>
-        </section>
-      )}
 
       {/* ===== MAGALI ===== */}
       <img

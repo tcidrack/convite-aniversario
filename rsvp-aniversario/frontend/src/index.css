@@ -8,30 +8,31 @@
 body {
   margin: 0;
   font-family: 'Lilita One', cursive;
-  background: #3bc46b;
 }
 
 /* PÁGINA */
 .invite-page {
   width: 100%;
   overflow-x: hidden;
-  background-image: url("/src/assets/fundo-melancia.jpg");
+  background-image: url("/src/assets/");
+  background-position: center;
   padding-bottom: 80px;
 }
 
 /* ===== VÍDEO TOPO ===== */
 .video-topo {
-  width: 80%;
+  width: 90%;
   margin: 20px auto;
-  position: relative;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
 }
 
 .video-topo video {
   width: 100%;
   height: auto;
   display: block;
-  object-fit: contain; /* NÃO ACHATA */
-  max-height: 70vh;
+  object-fit: cover;
 }
 
 /* ===== HERO ===== */
@@ -61,19 +62,46 @@ body {
   margin-bottom: 12px;
 }
 
+/* ===== ANIMAÇÃO NÚMERO 1 ===== */
 .numero-1 {
   width: 50px;
   height: auto;
   vertical-align: middle;
   margin-right: 8px;
-  rotate: calc(30deg + -10deg);
+  animation: balanco 2s ease-in-out infinite;
+  transform-origin: bottom center;
 }
 
-.mensagem,
-.texto {
-  font-family: Arial, sans-serif;
-  font-size: 16px;
+@keyframes balanco {
+  0%   { transform: rotate(0deg); }
+  20%  { transform: rotate(-8deg); }
+  40%  { transform: rotate(8deg); }
+  60%  { transform: rotate(-6deg); }
+  80%  { transform: rotate(6deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.mensagem-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.magali-texto {
+  width: 80px;
+  height: auto;
+}
+
+.mensagem {
+  font-family: 'Comic Neue', cursive;
+  font-size: 18px;
+  font-weight: bold;
   color: #000;
+  margin-top: 12px;
+  line-height: 1.4;
+  text-shadow: 1px 1px 0 #65a303;
 }
 
 /* ===== DATA ===== */
@@ -224,4 +252,39 @@ body {
   top: 10px;
   right: 10px;
   width: 90px;
+}
+
+.video-topo {
+  position: relative;
+}
+
+/* BOTÃO DE SOM */
+.btn-som {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #e53935;
+  color: #fff;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-size: 16px;
+  font-family: 'Lilita One', cursive;
+  cursor: pointer;
+  box-shadow: 0 6px 0 #b71c1c;
+  animation: pulse 1.2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.05); }
+  100% { transform: translateX(-50%) scale(1); }
+}
+
+/* ===== DESKTOP ===== */
+@media (min-width: 1024px) {
+  .video-topo {
+    max-width: 600px;   /* controla o tamanho */
+  }
 }
