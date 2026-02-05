@@ -1,18 +1,14 @@
-// src/services/firebase.js
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { initializeApp } from "firebase/app"
+import { getFirestore } from "firebase/firestore"
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBXZqwSE-ts0uCBDkZIIkPdQLZb5Ithmxo",
-  authDomain: "sinuous-transit-479417-h4.firebaseapp.com",
-  projectId: "sinuous-transit-479417-h4",
-  storageBucket: "sinuous-transit-479417-h4.appspot.com",
-  messagingSenderId: "515013642154",
-  appId: "1:515013642154:web:1ec5f1fbfb7cff24c58dd3",
-};
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+}
 
-// Inicializa o Firebase
-const app = initializeApp(firebaseConfig);
-
-// Exporta o Firestore
-export const db = getFirestore(app);
+const app = initializeApp(firebaseConfig)
+export const db = getFirestore(app)

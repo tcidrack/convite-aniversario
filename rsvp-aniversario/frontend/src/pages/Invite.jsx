@@ -14,10 +14,8 @@ export default function Invite() {
 
   const [audioAtivo, setAudioAtivo] = useState(false)
   const [volume, setVolume] = useState(1)
-
-  // UX / estados do botão
   const [confirmando, setConfirmando] = useState(false)
-  const [toast, setToast] = useState(null) // { type: 'success'|'error'|'info', text }
+  const [toast, setToast] = useState(null)
 
   function ativarSom() {
     setAudioAtivo(true)
@@ -35,14 +33,12 @@ export default function Invite() {
     }
   }, [volume])
 
-  // Endereços e calendar (mantidos)
   const endereco = "Rua Monsenhor Vicente Martins, 1795 - Henrique Jorge"
   const mapsUrl = "https://maps.app.goo.gl/1t5JZv4pcgNQxKQj6"
   const calendarUrl =
     "https://www.google.com/calendar/render?action=TEMPLATE&text=Anivers%C3%A1rio%20da%20Maria%20Isadora&dates=20260405T170000/20260405T200000&location=" +
     encodeURIComponent(endereco)
 
-  // fallback localStorage - evita perder confirmações se o Firestore der erro
   function salvarLocalmente(nomeConfirmado) {
     try {
       const listaAtual = JSON.parse(localStorage.getItem("confirmacoes") || "[]")
@@ -53,13 +49,11 @@ export default function Invite() {
     }
   }
 
-  // função de toast simples (fecha após 3s)
   function showToast(type, text, ms = 3000) {
     setToast({ type, text })
     setTimeout(() => setToast(null), ms)
   }
 
-  // função de confirmar (com fallback)
   async function confirmar() {
     const nomeTrim = nome.trim()
     if (!nomeTrim) {
@@ -70,25 +64,21 @@ export default function Invite() {
     setConfirmando(true)
 
     try {
-      // tenta salvar no Firestore
       if (!db) throw new Error("Firestore não inicializado")
       await addDoc(collection(db, "confirmacoes"), {
         nome: nomeTrim,
         createdAt: serverTimestamp(),
       })
 
-      // sucesso
       setNome("")
       setMostrarConfirmacao(false)
       showToast("success", "Presença confirmada! 🎉🍉")
-      // abre o calendário em nova aba (opcional)
       try {
         window.open(calendarUrl, "_blank")
       } catch (e) {
         console.info("Não foi possível abrir calendário:", e)
       }
     } catch (error) {
-      // se deu erro com Firestore, salva localmente como fallback
       console.error("Erro ao confirmar presença:", error)
       salvarLocalmente(nomeTrim)
       setNome("")
