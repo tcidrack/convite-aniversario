@@ -1,19 +1,13 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-import App from "./pages/Invite"
-import Presentes from "./pages/Presentes"
-import Admin from "./pages/Admin"
+import { BrowserRouter } from "react-router-dom"
+import App from "./App"
 import "./index.css"
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/presentes" element={<Presentes />} />
-        <Route path="/admin" element={<Admin />} />
-      </Routes>
+      <App />
     </BrowserRouter>
   </React.StrictMode>
 )
