@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { collection, addDoc, serverTimestamp } from "firebase/firestore"
 import { db } from "../services/firebase"
 import videoMagali from "../assets/video-magali.mp4"
+import magali from "../assets/magali.gif"
 import melanciaCentro from "../assets/melancia-centro.gif"
 import numero1 from "../assets/numero-1.png"
 
@@ -143,7 +144,11 @@ export default function Invite() {
         <div className="mensagem-box">
           <p className="mensagem">Venha se divertir comigo no meu aniversário!</p>
 
-          <img src="/src/assets/magali-direita.gif" className="magali-texto" alt="Magali" />
+          <img
+            src={magali}
+            className="magali"
+            alt="Magali"
+          />
         </div>
       </section>
 

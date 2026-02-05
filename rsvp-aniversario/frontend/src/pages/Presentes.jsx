@@ -1,3 +1,7 @@
+import sapato from "../assets/sapato.png"
+import roupa from "../assets/roupa.png"
+import brinquedo from "../assets/brinquedo.png"
+
 export default function Presentes() {
   return (
     <div className="invite-page presentes-page">
@@ -6,23 +10,25 @@ export default function Presentes() {
 
         <div className="presente">
           <img
-            src="/src/assets/sapato.png"
+            src={sapato}
             alt="Ícone de sapatinho"
             className="presente-icone"
           />
           Meu pezinho é tamanho 22
         </div>
+
         <div className="presente">
           <img
-            src="/src/assets/roupa.png"
+            src={roupa}
             alt="Ícone de roupa"
             className="presente-icone"
           />
           Visto de 1 a 2 anos
         </div>
+
         <div className="presente">
           <img
-            src="/src/assets/brinquedo.png"
+            src={brinquedo}
             alt="Ícone de brinquedo"
             className="presente-icone"
           />
@@ -33,7 +39,6 @@ export default function Presentes() {
           ⬅ Voltar para o convite
         </a>
       </section>
-      
     </div>
   )
 }
