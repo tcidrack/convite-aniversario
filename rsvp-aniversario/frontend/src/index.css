@@ -196,7 +196,7 @@ body {
 }
 
 .mensagem {
-  font-size: 24px;
+  font-size: 18px;
   font-style: normal;
   color: #000;
   margin-top: 12px;
@@ -541,10 +541,5 @@ button.acao {
 @media (min-width: 1024px) {
   .video-topo {
     max-width: 600px;
-  }
-
-  .mensagem {
-    font-size: 20px;
-    line-height: 1.5;
   }
 }

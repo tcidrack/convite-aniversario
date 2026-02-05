@@ -142,7 +142,7 @@ export default function Invite() {
         </div>
 
         <div className="mensagem-box">
-          <p className="mensagem">Venha se divertir comigo no meu aniversário!</p>
+          <p className="mensagem">Venha se divertir comigo <br></br> no meu aniversário!</p>
 
           <img
             src={magali}
