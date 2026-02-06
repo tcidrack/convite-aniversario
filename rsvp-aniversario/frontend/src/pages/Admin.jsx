@@ -1,35 +1,31 @@
 import { useEffect, useState } from "react"
-import { useSearchParams } from "react-router-dom"
 import { collection, getDocs, query, orderBy } from "firebase/firestore"
 import { db } from "../services/firebase"
 
 export default function Admin() {
-  const [searchParams] = useSearchParams()
-  const chave = searchParams.get("key")
-
-  if (chave !== "melancia123") {
-    return (
-      <div className="admin-page">
-        <div className="admin-card">
-          <h1>Acesso restrito 🍉</h1>
-        </div>
-      </div>
-    )
-  }
-
   const [confirmados, setConfirmados] = useState([])
 
   useEffect(() => {
     async function carregarConfirmados() {
-      const q = query(
-        collection(db, "confirmacoes"),
-        orderBy("createdAt", "desc")
-      )
-      const snapshot = await getDocs(q)
-      setConfirmados(
-        snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
-      )
+      try {
+        const q = query(
+          collection(db, "confirmacoes"),
+          orderBy("createdAt", "desc")
+        )
+
+        const snapshot = await getDocs(q)
+
+        setConfirmados(
+          snapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+          }))
+        )
+      } catch (error) {
+        console.error("Erro ao carregar confirmados:", error)
+      }
     }
+
     carregarConfirmados()
   }, [])
 
