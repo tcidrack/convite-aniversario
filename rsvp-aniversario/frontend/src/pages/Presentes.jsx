@@ -14,7 +14,7 @@ export default function Presentes() {
             alt="Ícone de sapatinho"
             className="presente-icone"
           />
-          Meu pezinho é tamanho 22
+          Meu pezinho é tamanho 24
         </div>
 
         <div className="presente">
@@ -23,7 +23,7 @@ export default function Presentes() {
             alt="Ícone de roupa"
             className="presente-icone"
           />
-          Visto de 1 a 2 anos
+          Visto de 2 a 3 anos
         </div>
 
         <div className="presente">
