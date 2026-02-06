@@ -194,7 +194,7 @@ export default function Invite() {
             </button>
 
             <h2>Confirme sua presença 💖</h2>
-            <p>Digite seu nome para aparecer na lista de convidados confirmados.</p>
+            <p>Digite seu nome e sobrenome para aparecer na lista de convidados confirmados.</p>
 
             <input placeholder="Seu nome" value={nome} onChange={(e) => setNome(e.target.value)} />
 
